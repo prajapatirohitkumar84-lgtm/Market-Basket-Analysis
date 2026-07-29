@@ -443,15 +443,22 @@ elif page == "Market Basket Analysis":
     # Transaction Matrix
     # ----------------------------------------
 
-    basket = (
-        instacart
-        .groupby(["order_id","product_name"])["product_name"]
-        .count()
-        .unstack()
-        .fillna(0)
-    )
+    # Top 200 most purchased products
+top_products = (
+    instacart["product_name"]
+    .value_counts()
+    .head(200)
+    .index
+)
 
-    basket = basket.applymap(lambda x: 1 if x > 0 else 0)
+filtered = instacart[
+    instacart["product_name"].isin(top_products)
+]
+
+basket = pd.crosstab(
+    filtered["order_id"],
+    filtered["product_name"]
+).astype(bool)
 
     st.success("Transaction Matrix Created Successfully")
 
@@ -712,14 +719,22 @@ elif page == "Recommendation System":
     st.header("🎯 Product Recommendation System")
 
     # Create Basket
-    basket = (
-        instacart.groupby(["order_id","product_name"])["product_name"]
-        .count()
-        .unstack()
-        .fillna(0)
-    )
+    # Top 200 most purchased products
+top_products = (
+    instacart["product_name"]
+    .value_counts()
+    .head(200)
+    .index
+)
 
-    basket = basket.applymap(lambda x: 1 if x > 0 else 0)
+filtered = instacart[
+    instacart["product_name"].isin(top_products)
+]
+
+basket = pd.crosstab(
+    filtered["order_id"],
+    filtered["product_name"]
+).astype(bool)
 
     # Frequent Itemsets
     frequent_itemsets = apriori(
@@ -802,14 +817,22 @@ elif page == "Business Insights":
 
     st.header("📈 Business Insights")
 
-    basket = (
-        instacart.groupby(["order_id","product_name"])["product_name"]
-        .count()
-        .unstack()
-        .fillna(0)
-    )
+    # Top 200 most purchased products
+top_products = (
+    instacart["product_name"]
+    .value_counts()
+    .head(200)
+    .index
+)
 
-    basket = basket.applymap(lambda x: 1 if x > 0 else 0)
+filtered = instacart[
+    instacart["product_name"].isin(top_products)
+]
+
+basket = pd.crosstab(
+    filtered["order_id"],
+    filtered["product_name"]
+).astype(bool)
 
     frequent_itemsets = apriori(
         basket,
