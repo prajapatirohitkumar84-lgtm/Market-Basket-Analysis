@@ -460,7 +460,7 @@ basket = pd.crosstab(
     filtered["product_name"]
 ).astype(bool)
 
-    st.success("Transaction Matrix Created Successfully")
+st.success("Transaction Matrix Created Successfully")
 
     st.write("Shape :", basket.shape)
 
@@ -720,7 +720,7 @@ elif page == "Recommendation System":
 
     # Create Basket
     # Top 200 most purchased products
-top_products = (
+    top_products = (
     instacart["product_name"]
     .value_counts()
     .head(200)
@@ -818,7 +818,7 @@ elif page == "Business Insights":
     st.header("📈 Business Insights")
 
     # Top 200 most purchased products
-top_products = (
+    top_products = (
     instacart["product_name"]
     .value_counts()
     .head(200)
