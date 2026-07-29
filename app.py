@@ -411,45 +411,23 @@ elif page == "Market Basket Analysis":
 
     st.markdown("### Apriori Algorithm")
 
-    # ----------------------------------------
-    # Sidebar Parameters
-    # ----------------------------------------
-
-    min_support = st.sidebar.slider(
-        "Minimum Support",
-        min_value=0.001,
-        max_value=0.10,
-        value=0.01,
-        step=0.001
-    )
-
-    min_confidence = st.sidebar.slider(
-        "Minimum Confidence",
-        min_value=0.10,
-        max_value=1.00,
-        value=0.40,
-        step=0.05
-    )
-
-    min_lift = st.sidebar.slider(
-        "Minimum Lift",
-        min_value=1.0,
-        max_value=10.0,
-        value=1.0,
-        step=0.1
-    )
-
-    # ----------------------------------------
-    # Transaction Matrix
-    # ----------------------------------------
-
-        # Top 200 most purchased products
     top_products = (
         instacart["product_name"]
         .value_counts()
         .head(200)
         .index
     )
+
+    filtered = instacart[
+        instacart["product_name"].isin(top_products)
+    ]
+
+    basket = pd.crosstab(
+        filtered["order_id"],
+        filtered["product_name"]
+    ).astype(bool)
+
+    st.success("Transaction Matrix Created Successfully")
 
     filtered = instacart[
         instacart["product_name"].isin(top_products)
@@ -661,11 +639,13 @@ elif page == "Market Basket Analysis":
     st.subheader("Strong Association Rules")
 
     strong_rules = rules[
-        (rules["confidence"]>=0.60)
-        &
-        (rules["lift"]>=2)
-    ]
+    (rules["confidence"] >= 0.60) &
+    (rules["lift"] >= 2)
+]
 
+if strong_rules.empty:
+    st.warning("No Strong Association Rules Found")
+else:
     st.dataframe(
         strong_rules[
             [
@@ -678,7 +658,6 @@ elif page == "Market Basket Analysis":
         ],
         use_container_width=True
     )
-
     # ----------------------------------------
     # Download Rules
     # ----------------------------------------
