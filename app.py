@@ -700,9 +700,9 @@ elif page == "Market Basket Analysis":
 # RECOMMENDATION SYSTEM PAGE
 # ==========================================================
 
-    elif page == "Recommendation System":
+elif page == "Recommendation System":
 
-        st.header("🎯 Product Recommendation System")
+    st.header("🎯 Product Recommendation System")
 
     top_products = (
         instacart["product_name"]
