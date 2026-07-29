@@ -643,9 +643,9 @@ elif page == "Market Basket Analysis":
     (rules["lift"] >= 2)
 ]
 
-if strong_rules.empty:
+    if strong_rules.empty:
     st.warning("No Strong Association Rules Found")
-else:
+    else:
     st.dataframe(
         strong_rules[
             [
