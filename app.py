@@ -40,8 +40,8 @@ st.markdown("---")
 @st.cache_data
 def load_data():
 
-    instacart = pd.read_csv(r"D:\Project (Navodita infotech)\Market Basket Analysis-[Rohit Kumar Prajapati]\instacart_processed.csv")
-    feature_store = pd.read_csv(r"D:\Project (Navodita infotech)\Market Basket Analysis-[Rohit Kumar Prajapati]\feature_store.csv")
+    instacart = pd.read_csv(r"instacart_processed.csv")
+    feature_store = pd.read_csv(r"feature_store.csv")
 
     return instacart, feature_store
 
