@@ -700,7 +700,7 @@ else:
 # RECOMMENDATION SYSTEM PAGE
 # ==========================================================
 
-elif page == "Recommendation System":
+    elif page == "Recommendation System":
 
     st.header("🎯 Product Recommendation System")
 
