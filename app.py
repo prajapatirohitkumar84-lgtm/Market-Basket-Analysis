@@ -410,7 +410,31 @@ elif page == "Market Basket Analysis":
     st.header("🛒 Market Basket Analysis")
 
     st.markdown("### Apriori Algorithm")
+    # Sidebar Parameters
 
+    min_support = st.sidebar.slider(
+    "Minimum Support",
+    min_value=0.001,
+    max_value=0.10,
+    value=0.01,
+    step=0.001
+    )
+
+    min_confidence = st.sidebar.slider(
+    "Minimum Confidence",
+    min_value=0.10,
+    max_value=1.00,
+    value=0.40,
+    step=0.05
+    )
+
+    min_lift = st.sidebar.slider(
+    "Minimum Lift",
+    min_value=1.0,
+    max_value=10.0,
+    value=1.0,
+    step=0.1
+    )
     top_products = (
         instacart["product_name"]
         .value_counts()
