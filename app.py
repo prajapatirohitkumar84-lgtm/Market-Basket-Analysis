@@ -644,7 +644,7 @@ elif page == "Market Basket Analysis":
     ]
 
     if strong_rules.empty:
-    st.warning("No Strong Association Rules Found")
+        st.warning("No Strong Association Rules Found")
     else:
     st.dataframe(
         strong_rules[
