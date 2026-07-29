@@ -103,7 +103,7 @@ if page == "Home":
 
     st.subheader("Dataset Preview")
 
-    st.dataframe(instacart.head(20), use_container_width=True)
+    st.dataframe(instacart.head(20), width="stretch")
 
     st.markdown("---")
 
@@ -114,7 +114,7 @@ if page == "Home":
         "Data Type":instacart.dtypes.astype(str)
     })
 
-    st.dataframe(info,use_container_width=True)
+    st.dataframe(info, width="stretch")
 
     st.markdown("---")
 
@@ -132,7 +132,7 @@ if page == "Home":
 
         st.dataframe(
             missing.reset_index(),
-            use_container_width=True
+            width="stretch"
         )
 
     st.markdown("---")
@@ -366,7 +366,7 @@ elif page == "EDA":
 
     st.dataframe(
         feature_store.head(20),
-        use_container_width=True
+        width="stretch"
     )
 
     st.markdown("---")
@@ -480,7 +480,7 @@ elif page == "Market Basket Analysis":
 
     st.dataframe(
         basket.head(),
-        use_container_width=True
+        width="stretch"
     )
 
     # ----------------------------------------
@@ -508,7 +508,7 @@ elif page == "Market Basket Analysis":
             "support",
             ascending=False
         ).head(30),
-        use_container_width=True
+        width="stretch"
     )
 
     # ----------------------------------------
@@ -580,7 +580,7 @@ elif page == "Market Basket Analysis":
                 ascending=False
             ),
 
-            use_container_width=True
+            width="stretch"
 
         )
 
@@ -685,7 +685,7 @@ elif page == "Market Basket Analysis":
                 "lift"
             ]
         ],
-        use_container_width=True
+        width="stretch"
     )
     # ----------------------------------------
     # Download Rules
@@ -804,7 +804,7 @@ elif page == "Recommendation System":
                 ]
             ].head(10),
 
-            use_container_width=True
+            width="stretch"
 
         )
 
@@ -884,7 +884,7 @@ elif page == "Business Insights":
             ]
         ].head(10),
 
-        use_container_width=True
+        width="stretch"
 
     )
 
