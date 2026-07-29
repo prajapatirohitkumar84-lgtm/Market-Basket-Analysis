@@ -443,24 +443,31 @@ elif page == "Market Basket Analysis":
     # Transaction Matrix
     # ----------------------------------------
 
-    # Top 200 most purchased products
-top_products = (
-    instacart["product_name"]
-    .value_counts()
-    .head(200)
-    .index
-)
+        # Top 200 most purchased products
+    top_products = (
+        instacart["product_name"]
+        .value_counts()
+        .head(200)
+        .index
+    )
 
-filtered = instacart[
-    instacart["product_name"].isin(top_products)
-]
+    filtered = instacart[
+        instacart["product_name"].isin(top_products)
+    ]
 
-basket = pd.crosstab(
-    filtered["order_id"],
-    filtered["product_name"]
-).astype(bool)
+    basket = pd.crosstab(
+        filtered["order_id"],
+        filtered["product_name"]
+    ).astype(bool)
 
-st.success("Transaction Matrix Created Successfully")
+    st.success("Transaction Matrix Created Successfully")
+
+    st.write("Shape :", basket.shape)
+
+    st.dataframe(
+        basket.head(),
+        width="stretch"
+    )
 
     st.write("Shape :", basket.shape)
 
@@ -718,23 +725,21 @@ elif page == "Recommendation System":
 
     st.header("🎯 Product Recommendation System")
 
-    # Create Basket
-    # Top 200 most purchased products
     top_products = (
-    instacart["product_name"]
-    .value_counts()
-    .head(200)
-    .index
-)
+        instacart["product_name"]
+        .value_counts()
+        .head(200)
+        .index
+    )
 
-filtered = instacart[
-    instacart["product_name"].isin(top_products)
-]
+    filtered = instacart[
+        instacart["product_name"].isin(top_products)
+    ]
 
-basket = pd.crosstab(
-    filtered["order_id"],
-    filtered["product_name"]
-).astype(bool)
+    basket = pd.crosstab(
+        filtered["order_id"],
+        filtered["product_name"]
+    ).astype(bool)
 
     # Frequent Itemsets
     frequent_itemsets = apriori(
@@ -817,23 +822,21 @@ elif page == "Business Insights":
 
     st.header("📈 Business Insights")
 
-    # Top 200 most purchased products
     top_products = (
-    instacart["product_name"]
-    .value_counts()
-    .head(200)
-    .index
-)
+        instacart["product_name"]
+        .value_counts()
+        .head(200)
+        .index
+    )
 
-filtered = instacart[
-    instacart["product_name"].isin(top_products)
-]
+    filtered = instacart[
+        instacart["product_name"].isin(top_products)
+    ]
 
-basket = pd.crosstab(
-    filtered["order_id"],
-    filtered["product_name"]
-).astype(bool)
-
+    basket = pd.crosstab(
+        filtered["order_id"],
+        filtered["product_name"]
+    ).astype(bool)
     frequent_itemsets = apriori(
         basket,
         min_support=0.01,
