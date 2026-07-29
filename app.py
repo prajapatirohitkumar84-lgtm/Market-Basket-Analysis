@@ -435,6 +435,11 @@ elif page == "Market Basket Analysis":
     value=1.0,
     step=0.1
     )
+    frequent_itemsets = apriori(
+    basket,
+    min_support=min_support,
+    use_colnames=True
+    )
     top_products = (
         instacart["product_name"]
         .value_counts()
